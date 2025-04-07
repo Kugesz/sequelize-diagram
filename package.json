@@ -2,7 +2,7 @@
   "name": "sequelize-diagram",
   "version": "1.0.0",
   "description": "This package can create uml diagrams that symbolize datatables structuls and relations.",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/Kugesz/sequelize-diagram/issues"
   },
-  "homepage": "https://github.com/Kugesz/sequelize-diagram#readme"
+  "homepage": "https://github.com/Kugesz/sequelize-diagram#readme",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
 }
