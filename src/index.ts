@@ -5,6 +5,10 @@ import getPaths from "./getPaths";
 import loadAllModel from "./loadAllModel";
 import tableExtraction from "./tableExtraction";
 
+import { writeFileSync } from "fs";
+import Table from "./classes/Table";
+import TableRepo from "./TableRepo";
+
 // const root = path.join(__dirname, "..", "..");
 const root = path.join(__dirname, "..", "test");
 
@@ -20,15 +24,23 @@ const main = async () => {
   const modelPaths = getPaths(modelFolderPath);
 
   const models = await loadAllModel(modelPaths);
-
-  const datas = [];
+  const modelData = [];
 
   for (const model of Object.values(models)) {
-    datas.push(tableExtraction(model));
+    modelData.push(tableExtraction(model));
   }
 
-  console.log(datas);
+  // console.log(Object.values(models[0]));
+  const data = models.map((model, index) => {
+    return {
+      name: Object.values(model),
+      rows: modelData[index],
+    };
+  });
+  console.log(modelData);
+  const tableRepo = new TableRepo(data);
+  tableRepo.writeToConsole();
+  tableRepo.generateXml();
 };
-
 main();
 console.log("exit");
